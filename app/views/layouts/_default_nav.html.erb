@@ -19,7 +19,7 @@
                 </li>
 
 
-                <%= form_tag('sessions_path', {class: "navbar-form navbar-right"}) do %>
+                <%= form_tag(sessions_path, {class: "navbar-form navbar-right"}) do %>
                         <div class="form-group">
                           <%= text_field_tag :username, nil, {placeholder: 'Username', class: "form-control"} %>
                         </div>
