@@ -1,0 +1,5 @@
+<% if signed_in? %>
+<%= link_to sign_out_path, method: :delete do %>
+<i data-toggle="tooltip" title="Çıkış" class="fa fa-power-off"> Çıkış</i>
+<% end %>
+<% end %>

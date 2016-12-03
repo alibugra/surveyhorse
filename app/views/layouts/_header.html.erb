@@ -27,4 +27,10 @@
 
 <body>
 
-<%= render "layouts/default_nav" %>
+  <% if signed_in? %>
+      <% if current_user.role == 3 %>
+        <%= render "layouts/nav_sysadmin" %>
+      <% end %>
+    <% else %>
+      <%= render "layouts/default_nav" %>
+    <% end %>
