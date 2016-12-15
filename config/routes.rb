@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'faq/index'
+
+  get 'contact/index'
+
   # AUTHENTICATION
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
