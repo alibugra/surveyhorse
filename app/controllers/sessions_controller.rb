@@ -5,9 +5,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username], password: params[:password])
     if @user != nil
       sign_in(@user)
+      flash[:notice] = "logged"
       redirect_to root_path
     else
-      flash.now[:alert] = "Kullanıcı adınızı ve şifrenizi kontrol ediniz."
+      flash[:notice] = "not_logged"
       redirect_to root_path
     end
   end
