@@ -28,9 +28,13 @@
 <body>
 
   <% if signed_in? %>
-      <% if current_user.role == 3 %>
+    <% if current_user.role == 3 %>
         <%= render "layouts/nav_sysadmin" %>
-      <% end %>
-    <% else %>
-      <%= render "layouts/default_nav" %>
+    <% elsif current_user.role == 2 %>
+        <%= render "layouts/nav_surveymanager" %>
+    <% elsif current_user.role == 1 %>
+        <%= render "layouts/nav_surveyor" %>
     <% end %>
+  <% else %>
+    <%= render "layouts/default_nav" %>
+  <% end %>

@@ -15,7 +15,19 @@ class ApplicationController < ActionController::Base
   end
 
   def require_surveyor
-    if !signed_in?
+    if current_user.role != 1
+      redirect_to '/'
+    end
+  end
+
+  def require_surveymanager
+    if current_user.role != 2
+      redirect_to '/'
+    end
+  end
+
+  def require_sysadmin
+    if current_user.role != 3
       redirect_to '/'
     end
   end
