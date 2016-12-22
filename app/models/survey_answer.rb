@@ -1,0 +1,2 @@
+class SurveyAnswer < ApplicationRecord
+end
