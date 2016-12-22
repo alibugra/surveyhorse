@@ -1,0 +1,60 @@
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit Profile
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+
+                    <% if flash[:notice] == "Success_p" %>
+                      <div class="alert alert-success">
+                        <strong>Success!</strong> E-mail and Password has been updated.
+                      </div>
+                    <% elsif flash[:notice] == "Success_e" %>
+                      <div class="alert alert-success">
+                        <strong>Success!</strong> E-mail has been updated.
+                      </div>
+                    <% end %>
+
+                    <p><b>Username :</b> <%= @user.username %></p>
+                    <div class="well">
+                        <h4>Update Profile</h4>
+                        <%= form_tag sysadmin_update_user_path(@user), {class: "form-horizontal"} do %>
+                        <%= hidden_field_tag :id, @user.id %>
+                         <div class="form-group">
+                           <label class="control-label col-sm-2" for="email">Email :</label>
+                           <div class="col-sm-3">
+                             <%= text_field_tag :email, @user.email, :class=>"form-control", :placeholder=>"email" %>
+                           </div>
+                         </div>
+                         <div class="form-group">
+                           <label class="control-label col-sm-2" for="pwd">New Password :</label>
+                           <div class="col-sm-3">
+                             <%= password_field_tag :password, "", :class=>"form-control", :placeholder=>"password" %>
+                           </div>
+                         </div>
+                         <div class="form-group">
+                           <label class="control-label col-sm-2" for="pwd">Confirm Password :</label>
+                           <div class="col-sm-3">
+                             <%= password_field_tag :password_confirmation, "", :class=>"form-control", :placeholder=>"password confirmation" %>
+                           </div>
+                         </div>
+                         <div class="form-group">
+                           <div class="col-sm-offset-2 col-sm-10">
+                             <button type="submit" class="btn btn-primary">Edit</button>
+                           </div>
+                         </div>
+                        <% end %>
+                    </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
