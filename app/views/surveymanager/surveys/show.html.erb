@@ -4,7 +4,7 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Survey List
+            <h1 class="page-header">Survey Results
             </h1>
         </div>
     </div>
@@ -22,8 +22,9 @@
                                 <tr>
                                   <th></th>
                                   <th>Survey Title</th>
-                                  <th>Number of Questions</th>
-                                  <th>Unregistered Link</th>
+                                  <th>Username</th>
+                                  <th>Question</th>
+                                  <th>Answer</th>
                                   <th></th>
                                 </tr>
                               </thead>
@@ -31,15 +32,18 @@
                                 <% @surveys.each do |survey| %>
                                   <tr>
                                     <td></td>
-                                    <td><%= survey.title %></td>
-                                    <td><%= survey.survey_questions.count %></td>
-                                    <td>http://localhost:3001/anonymous/surveys/<%= survey.id %>/fill</td>
+                                    <td><%= Survey.where(id: survey.survey_id).first.title %></td>
                                     <td>
-                                      <%= link_to "Edit", surveymanager_edit_survey_path(survey), class: 'btn btn-primary' %>
-                                      <%= form_tag surveymanager_delete_survey_path, {:style => "display:inline;"} do %>
-                                        <%= hidden_field_tag :survey_id, survey.id %>
-                                        <%= button_tag 'Delete', class: 'btn btn-primary', data: { confirm: 'Confirm to delete this survey ?' } %>
+                                      <% if survey.user_id == -1 %>
+                                        Unregistered Surveyor
+                                      <% else %>
+                                        <%= User.where(id: survey.user_id).first.username %>
                                       <% end %>
+
+                                    </td>
+                                    <td><%= SurveyQuestion.where(id: survey.survey_question_id).first.question %></td>
+                                    <td><%= SurveyAnswer.where(id: survey.survey_answer_id).first.answer %></td>
+                                    <td>
                                     </td>
                                   </tr>
                                 <% end %>
