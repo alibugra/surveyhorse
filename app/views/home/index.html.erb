@@ -13,10 +13,14 @@
             Welcome <%=current_user.username%>, you have successfully logged in.
         </div>
       <% end %>
-      <h1>Welcome to SurveyHorse</h1>
-      <p>Please register and continue with creating a new survey !</p>
-      <p>Crazy horse brotherhood</p>
-      <p>This is my turn</p>
-      <p>See you My Horse</p>
+      <% if signed_in? %>
+        <h1>Welcome to SurveyHorse</h1>
+      <% else %>
+        <h1>Welcome to SurveyHorse</h1>
+        <p>Please register and continue with creating a new survey !</p>
+        <p>Crazy horse brotherhood</p>
+        <p>This is my turn</p>
+        <p>See you My Horse</p>
+      <% end %>
     </div>
   </div>
