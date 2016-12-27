@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   # SURVEY MANAGER PAGES
   namespace :surveymanager do
     get '/surveys' => 'surveys#index'
-    get '/create' => 'surveys#create'
+    get '/create' => 'surveys#new'
     post '/create' => 'surveys#create'
+    post '/delete-survey' => 'surveys#delete_survey'
+    get '/surveys/:id/edit', to: 'surveys#edit' , as: 'edit_survey'
+    post '/surveys/:id' , to: 'surveys#update' , as: 'update_survey'
+    get '/surveyresults', to: 'surveys#show' , as: 'show_results'
     get '/profile' => 'profile#index'
     post '/profile' => 'profile#edit_profile'
   end
@@ -20,6 +24,15 @@ Rails.application.routes.draw do
   namespace :surveyor do
     get '/profile' => 'profile#index'
     post '/profile' => 'profile#edit_profile'
+    get '/search' => 'search#index'
+    get '/surveys/:id/fill', to: 'surveys#fill' , as: 'fill_survey'
+    post '/surveys/:id' , to: 'surveys#fill_complete' , as: 'fill_complete_survey'
+  end
+
+  # ANONYMOUS PAGES
+  namespace :anonymous do
+    get '/surveys/:id/fill', to: 'surveys#fill' , as: 'fill_survey'
+    post '/surveys/:id' , to: 'surveys#fill_complete' , as: 'fill_complete_survey'
   end
 
   # MAIN PAGES
