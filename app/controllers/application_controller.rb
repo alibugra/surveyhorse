@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_surveymanager
-    if current_user.role != 2
+    if current_user.role != 2 && current_user.role != 3
       redirect_to '/'
     end
   end
