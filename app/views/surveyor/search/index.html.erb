@@ -1,0 +1,63 @@
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Search Survey
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+
+                    <% if flash[:notice] == "No_any_result" %>
+                      <div class="alert alert-warning">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                        No any search result.
+                      </div>
+                    <% end %>
+
+                    <div class="search">
+                         <%= form_tag(surveyor_search_path, :method => "get", id: "search-form") do %>
+                         <%= text_field_tag :search, params[:search], placeholder: "Search", class:"search-form" %>
+                         <i class="fa fa-search"></i>
+                         <% end %>
+                    </div>
+
+                    <hr>
+                    <% if @surveys.count > 0 %>
+
+                      <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Survey Title</th>
+                              <th>Number of Questions</th>
+                              <th>Status</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @surveys.each do |survey| %>
+                              <tr>
+                                <td></td>
+                                <td><%= survey.title %></td>
+                                <td><%= survey.survey_questions.count %></td>
+                                <td><%= survey.status %></td>
+                                <td>
+                                  <%= link_to "Fill Survey", surveyor_fill_survey_path(survey), class: 'btn btn-primary' %>
+                                </td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+
+                    <% end %>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
