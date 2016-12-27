@@ -4,18 +4,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:username],
-                     password: params[:password],
-                     email: params[:email], role: params[:role])
-    if @user.save
-      sign_in(@user)
-      redirect_to root_path
-    else
-      render 'New'
-    end
-  end
-
-  def create
     @user = User.new(username: params[:username].gsub(" ",""),
                      password: params[:password],
                      email: params[:email], role: params[:role])
