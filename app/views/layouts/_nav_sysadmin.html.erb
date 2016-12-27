@@ -11,8 +11,16 @@
                 <li>
                     <a href="<%= sysadmin_users_path %>">Manage Users</a>
                 </li>
-                <li>
-                    <a href="">Manage Surveys</a>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Surveys <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<%= surveymanager_create_path %>">Create Survey</a>
+                            </li>
+                            <li>
+                                <a href="<%= surveymanager_surveys_path %>">Survey List</a>
+                            </li>
+                        </ul>
                 </li>
                 <li>
                    <% if signed_in? %>

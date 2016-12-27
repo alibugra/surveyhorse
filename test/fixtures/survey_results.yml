@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  survey_id: 1
+  survey_question_id: 1
+  survey_answer_id: 1
+
+two:
+  user_id: 1
+  survey_id: 1
+  survey_question_id: 1
+  survey_answer_id: 1
