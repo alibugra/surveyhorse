@@ -1,0 +1,38 @@
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Fill Survey
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+
+          <h4>Survey Title : <i><%= @survey.title %></i></h4>
+
+          <%= form_tag anonymous_fill_complete_survey_path(@survey), {class: "form-horizontal"} do %>
+             <%= hidden_field_tag :survey_id, @survey.id %>
+             <% @survey.survey_questions.all.each do |question| %>
+               <h5>Question : <i><%= question.question %></i></h5>
+               <% question.survey_answers.all.each do |answer| %>
+                 <div class="form-group">
+                   <div class="col-sm-3">
+                     <%= radio_button_tag "answer" + question.id.to_s, answer.id.to_s %>
+                     <i><%= answer.answer %></i>
+                   </div>
+                 </div>
+               <% end %>
+             <% end %>
+            <button type="submit" class="btn btn-primary">Complete Survey</button>
+          <% end %>
+
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
