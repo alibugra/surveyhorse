@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222134644) do
+ActiveRecord::Schema.define(version: 20161227102850) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20161222134644) do
     t.integer  "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "survey_results", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "survey_id"
+    t.integer  "survey_question_id"
+    t.integer  "survey_answer_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "surveys", force: :cascade do |t|
