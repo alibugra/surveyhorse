@@ -6,8 +6,6 @@ class Surveyor::SearchController < ApplicationController
       @surveys = Survey.all.order('id desc').search(params[:search])
       if @surveys.count < 1
         flash[:notice] = "No_any_result"
-      else
-        flash[:notice] = "..."
       end
     end
   end

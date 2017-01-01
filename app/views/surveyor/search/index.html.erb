@@ -24,6 +24,7 @@
                     <div class="search">
                          <%= form_tag(surveyor_search_path, :method => "get", id: "search-form") do %>
                          <%= text_field_tag :search, params[:search], placeholder: "Search", class:"search-form" %>
+                         <button>Search</button>
                          <i class="fa fa-search"></i>
                          <% end %>
                     </div>
