@@ -1,0 +1,43 @@
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit Survey
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+
+                    <% if flash[:notice] == "Success_p" %>
+                      <div class="alert alert-success">
+                        <strong>Success!</strong> Survey has been updated.
+                      </div>
+                    <% end %>
+
+                    <div class="well">
+                        <h4>Update Survey</h4>
+                        <%= form_tag surveymanager_update_survey_path(@survey), {class: "form-horizontal"} do %>
+                        <%= hidden_field_tag :id, @survey.id %>
+                         <div class="form-group">
+                           <label class="control-label col-sm-2" for="email">Title :</label>
+                           <div class="col-sm-3">
+                             <%= text_field_tag :title, @survey.title, :class=>"form-control", :placeholder=>"title" %>
+                           </div>
+                         </div>
+                         <div class="form-group">
+                           <div class="col-sm-offset-2 col-sm-10">
+                             <button type="submit" class="btn btn-primary">Edit</button>
+                           </div>
+                         </div>
+                        <% end %>
+                    </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->

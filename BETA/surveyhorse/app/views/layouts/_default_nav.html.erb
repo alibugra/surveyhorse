@@ -1,0 +1,40 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="<%= root_path %>"><span style="color:white;">SurveyHorse</span></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="<%= root_path %>">Home</a>
+                </li>
+                <li>
+                    <a href="<%= faq_path %>">FAQ</a>
+                </li>
+                <li>
+                    <a href="<%= contact_path %>">Contact</a>
+                </li>
+
+
+                <%= form_tag(sessions_path, {class: "navbar-form navbar-right"}) do %>
+                        <div class="form-group">
+                          <%= text_field_tag :username, nil, {placeholder: 'Username', class: "form-control"} %>
+                        </div>
+                        <div class="form-group">
+                          <%= password_field_tag :password, nil, {placeholder: 'Password', class: "form-control"} %>
+                        </div>
+                        <%= submit_tag 'Login', {class: "btn btn-warning"} %>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerModal">Register</button>
+
+                      <!--   <a href="/en"><img src='/lang/englogo.png'></a> -->
+               <% end %>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
