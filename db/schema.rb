@@ -12,28 +12,28 @@
 
 ActiveRecord::Schema.define(version: 20161227102850) do
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "survey_answers", force: :cascade do |t|
-    t.text     "answer"
+  create_table "survey_answers", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
+    t.text     "answer",             limit: 65535
     t.integer  "survey_question_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
-  create_table "survey_questions", force: :cascade do |t|
-    t.text     "question"
+  create_table "survey_questions", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
+    t.text     "question",   limit: 65535
     t.integer  "survey_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  create_table "survey_results", force: :cascade do |t|
+  create_table "survey_results", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "survey_id"
     t.integer  "survey_question_id"
@@ -42,15 +42,18 @@ ActiveRecord::Schema.define(version: 20161227102850) do
     t.datetime "updated_at",         null: false
   end
 
-  create_table "surveys", force: :cascade do |t|
+  create_table "surveys", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.integer  "user_id"
     t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "is_published"
+    t.date     "publish_date"
+    t.date     "end_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
     t.string   "password"
     t.string   "email"
