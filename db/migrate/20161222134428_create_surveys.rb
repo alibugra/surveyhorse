@@ -4,6 +4,9 @@ class CreateSurveys < ActiveRecord::Migration[5.0]
       t.string :title
       t.integer :user_id
       t.string :status
+      t.string :is_published
+      t.date :publish_date
+      t.date :end_date
 
       t.timestamps
     end
