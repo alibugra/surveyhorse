@@ -108,6 +108,27 @@
                             title_input.value = document.getElementById("title").value;
                             container.appendChild(title_input);
 
+                            var pdate = document.createElement("input");
+                            pdate.id = "pdate";
+                            pdate.name = "pdate";
+                            pdate.type = "hidden"
+                            pdate.value = document.getElementById("publish_date").value;
+                            container.appendChild(pdate);
+
+                            var edate = document.createElement("input");
+                            edate.id = "edate";
+                            edate.name = "edate";
+                            edate.type = "hidden"
+                            edate.value = document.getElementById("end_date").value;
+                            container.appendChild(edate);
+
+                            var type_input = document.createElement("input");
+                            type_input.id = "typei";
+                            type_input.name = "typei";
+                            type_input.type = "hidden"
+                            type_input.value = document.getElementById("type").value;
+                            container.appendChild(type_input);
+
                       	    var btn = document.createElement("Button");
                       	    btn.type = "submit";
                       	    btn.innerText = "Create";
@@ -119,6 +140,15 @@
                       <div class="col-md-12">
                         <h4>Survey Title :</h4>
                         <input type="text" id="title" name="title" value="">
+                        <h4>Survey Type :</h4>
+                        <select name="type" id="type">
+                          <option value="Public">Public</option>
+                          <option value="Private">Private</option>
+                        </select>
+                        <h4>Publish Date :</h4>
+                        <input type="text" id="publish_date" name="publish_date" value="" placeholder="01.01.2017">
+                        <h4>Survey End Date :</h4>
+                        <input type="text" id="end_date" name="end_date" value="" placeholder="01.01.2017">
                         <h4>Number of Questions :</h4>
                         <input type="text" id="q" name="q" value="">
                         <input type="submit" id="filldetails" onclick="addFields()" value="Add">
