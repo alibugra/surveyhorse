@@ -1,0 +1,39 @@
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Preview Survey
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+
+          <h4>Survey Title : <i><%= @survey.title %></i></h4>
+
+          <%= form_tag surveyor_fill_complete_survey_path(@survey), {class: "form-horizontal"} do %>
+             <%= hidden_field_tag :survey_id, @survey.id %>
+             <% @survey.survey_questions.all.each do |question| %>
+               <h5>Question : <i><%= question.question %></i></h5>
+               <% question.survey_answers.all.each do |answer| %>
+                 <% if answer.answer != "" then %>
+                   <div class="form-group">
+                     <div class="col-sm-3">
+                       <%= radio_button_tag "answer" + question.id.to_s, answer.id.to_s %>
+                       <i><%= answer.answer %></i>
+                     </div>
+                   </div>
+                 <% end %>
+               <% end %>
+             <% end %>
+          <% end %>
+          <a href="<%= surveymanager_surveys_path %>"><button type="submit" class="btn btn-primary"><< Go Back</button></a>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->

@@ -24,6 +24,8 @@
                                   <th>Survey Title</th>
                                   <th>Number of Questions</th>
                                   <th>Unregistered Link</th>
+                                  <th>Private Link</th>
+                                  <th></th>
                                   <th></th>
                                 </tr>
                               </thead>
@@ -33,12 +35,30 @@
                                     <td></td>
                                     <td><%= survey.title %></td>
                                     <td><%= survey.survey_questions.count %></td>
-                                    <td>http://localhost:3001/anonymous/surveys/<%= survey.id %>/fill</td>
+                                    <td>http://localhost:3000/anonymous/surveys/<%= survey.id %>/fill</td>
+                                    <td><% if survey.status != "Public" then %>http://localhost:3000/surveyor/surveys/<%= survey.id %>/fill<% end %></td>
                                     <td>
-                                      <%= link_to "Edit", surveymanager_edit_survey_path(survey), class: 'btn btn-primary' %>
+                                      <%= link_to "Preview", surveymanager_preview_survey_path(survey), class: 'btn btn-primary' %>
+                                      <% if survey.is_published == "No" %>
+                                        <%= link_to "Edit", surveymanager_edit_survey_path(survey), class: 'btn btn-primary' %>
+                                      <% end %>
                                       <%= form_tag surveymanager_delete_survey_path, {:style => "display:inline;"} do %>
                                         <%= hidden_field_tag :survey_id, survey.id %>
                                         <%= button_tag 'Delete', class: 'btn btn-primary', data: { confirm: 'Confirm to delete this survey ?' } %>
+                                      <% end %>
+                                    </td>
+                                    <td>
+                                      <% if survey.is_published == "No" %>
+                                            <%= form_tag surveymanager_publish_survey_path do %>
+                                              <%= hidden_field_tag :survey_id, survey.id %>
+                                              <%= button_tag(data: { confirm: 'Are you sure ?' }, :class => 'btn btn-danger') do %>
+                                                <i class="fa fa-plus"> Publish</i>
+                                              <% end %>
+                                            <% end %>
+                                          <% elsif survey.is_published == "Yes" %>
+                                            <button class="btn btn-success">
+                                              <i class="fa fa-thumbs-up"> Published</i>
+                                            </button>
                                       <% end %>
                                     </td>
                                   </tr>

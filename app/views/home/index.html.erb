@@ -12,6 +12,11 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
             Welcome <%=current_user.username%>, you have successfully logged in.
         </div>
+      <% elsif flash[:notice] == "fail" %>
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            Please check your information or use a password which is length is greater than six, or use different email, username.
+        </div>
       <% end %>
       <% if signed_in? %>
         <h1>Welcome to SurveyHorse</h1>

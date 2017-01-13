@@ -43,15 +43,17 @@
                           </thead>
                           <tbody>
                             <% @surveys.each do |survey| %>
-                              <tr>
-                                <td></td>
-                                <td><%= survey.title %></td>
-                                <td><%= survey.survey_questions.count %></td>
-                                <td><%= survey.status %></td>
-                                <td>
-                                  <%= link_to "Fill Survey", surveyor_fill_survey_path(survey), class: 'btn btn-primary' %>
-                                </td>
-                              </tr>
+                              <% if survey.is_published == "Yes" && (survey.publish_date.strftime("%d").to_i >= Date.today.strftime("%d").to_i) && (survey.publish_date.strftime("%m").to_i >= Date.today.strftime("%m").to_i) && (survey.end_date.strftime("%d").to_i >= Date.today.strftime("%d").to_i) && (survey.end_date.strftime("%m").to_i >= Date.today.strftime("%m").to_i) %>
+                                <tr>
+                                  <td></td>
+                                  <td><%= survey.title %></td>
+                                  <td><%= survey.survey_questions.count %></td>
+                                  <td><%= survey.status %></td>
+                                  <td>
+                                    <%= link_to "Fill Survey", surveyor_fill_survey_path(survey), class: 'btn btn-primary' %>
+                                  </td>
+                                </tr>
+                              <% end %>
                             <% end %>
                           </tbody>
                         </table>

@@ -9,7 +9,7 @@
         </div>
     </div>
     <!-- /.row -->
-
+<% if @survey.is_published == "Yes" && (@survey.publish_date.strftime("%d").to_i >= Date.today.strftime("%d").to_i) && (@survey.publish_date.strftime("%m").to_i >= Date.today.strftime("%m").to_i) && (@survey.end_date.strftime("%d").to_i >= Date.today.strftime("%d").to_i) && (@survey.end_date.strftime("%m").to_i >= Date.today.strftime("%m").to_i) %>
     <!-- Content Row -->
     <div class="row">
         <div class="col-lg-12">
@@ -21,12 +21,14 @@
              <% @survey.survey_questions.all.each do |question| %>
                <h5>Question : <i><%= question.question %></i></h5>
                <% question.survey_answers.all.each do |answer| %>
+               <% if answer.answer.strip != "" then %>
                  <div class="form-group">
                    <div class="col-sm-3">
                      <%= radio_button_tag "answer" + question.id.to_s, answer.id.to_s %>
                      <i><%= answer.answer %></i>
                    </div>
                  </div>
+               <% end %>
                <% end %>
              <% end %>
             <button type="submit" class="btn btn-primary">Complete Survey</button>
@@ -36,3 +38,4 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+  <% end %>

@@ -13,7 +13,7 @@ class Surveymanager::SurveysController < ApplicationController
 
   def create
     @survey = Survey.new(title: params[:ttl], user_id: current_user.id,
-                         status: "Open")
+                         status: params[:typei], is_published: "No", publish_date: params[:pdate], end_date: params[:edate])
     if (params[:ttl] != "")
       if @survey.save
         @survey_id = Survey.all.where(user_id: current_user.id).last.id
@@ -66,6 +66,14 @@ class Surveymanager::SurveysController < ApplicationController
     @surveys = SurveyResult.all.order('survey_id desc')
   end
 
+  def preview
+    begin
+      @survey = Survey.find(params[:id])
+    rescue
+      redirect_to surveymanager_surveys_path
+    end
+  end
+
   def show_results
   end
 
@@ -73,6 +81,16 @@ class Surveymanager::SurveysController < ApplicationController
     begin
       @s = Survey.where(id: params[:survey_id]).first
       @s.destroy
+    rescue
+    end
+    redirect_to surveymanager_surveys_path
+  end
+
+  def publish_survey
+    begin
+      @s = Survey.where(id: params[:survey_id]).first
+      @s.is_published = "Yes"
+      @s.save
     rescue
     end
     redirect_to surveymanager_surveys_path
